@@ -27,4 +27,8 @@ NodeTree is a package made with Gamedev intentions in mind but that doesn't mean
 
 ## License 
 
-This package is under the MIT license, check the [License]() for more info
+This package is under the MIT license, check the [License](https://github.com/Gesee-y/NodeTree.jl/blob/main/License.txt) for more info
+
+## Contribution 
+
+Every contribution or bug report if welcomed, don't hesitate to pull request or create issues.
