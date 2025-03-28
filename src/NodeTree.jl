@@ -6,8 +6,25 @@ export AbstractTree, AbstractRoot, AbstractNode
 export Node
 export ObjectRoot, ObjectTree
 
+"""
+    abstract type AbstractTree
+
+Abstract use to define object that should inherit tree's functionalities
+"""
 abstract type AbstractTree end
+
+"""
+    abstract type AbstractRoot 
+
+Abstract type that's used to define trees root. any custom root should be a subtype of this
+"""
 abstract type AbstractRoot end
+
+"""
+    abstract type AbstractNode
+
+Abstract type you can use to define your own custom type of node
+"""
 abstract type AbstractNode end
 
 ## A Simple Dictionary interface to keep track of nodes
