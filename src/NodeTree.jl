@@ -90,9 +90,18 @@ end
 Base.length(d::SimpleDict) = length(getfield(d,:ky))
 
 """
-	struct Node
+	  mutable struct Node
+        self :: T
+        ID :: UInt
+        tree :: WeakRef
+        parentID :: UInt
 
-A struct to create a Node for an abstract tree.
+        name :: String
+        childrens :: Vector{UInt}
+
+A struct to create a Node for an abstract tree. `self` if the object encapsulated by the node, `ID` is the node ID in the tree, `tree` is a reference to the nodes tree, `parentID` is the node's parent ID, `name` is the node name and `children`is the node's children.
+
+**Note**: Don't directly try to access or modify these fields, use accessors functions instead like `get_children` of `get_node_id`
 """
 mutable struct Node{T} <: AbstractNode
 	self :: T
