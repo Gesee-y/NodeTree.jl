@@ -76,7 +76,7 @@ add_child(n2, n7)
 add_child(n7, n8)
 add_child(n2, n9)
 
-# Add a string node to `n3`
+# Add a node named "String" to `n3`
 n10 = Node("Yay", "String")
 add_child(n3, n10)
 
