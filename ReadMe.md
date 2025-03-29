@@ -33,7 +33,7 @@ NodeTree.jl is designed with game development in mind but is versatile enough fo
 ## Features  
 
 - **LinkedTree**: Create trees where data is wrapped in nodes objects. Nodes are linked one to another allowing clearer parent-child relationship.
-- **ObjectTree**: Create trees where nodes are not directly linked together, instead they are all stored in a Dict and retrieved through their ID, a constant unsigned integer. This allow faster operation(getting a node is O(1) if you know it's ID as an example)
+- **ObjectTree**: Create trees where nodes are not directly linked together, instead they are all stored in a Dict and retrieved through their ID, a constant unsigned integer. This allow faster operations(getting a node is O(1) if you know it's ID as an example)
 - **Traversal functions**: DFS (leaf-to-root) and BFS (root-to-leaf).  
 - **Tree manipulation**: Adding, removing, and accessing nodes.  
 - **Pretty-printing**: Visualize tree structures, even for custom tree types.  
@@ -49,7 +49,7 @@ using NodeTree
 # We create a new Object tree
 tree = ObjectTree()
 
-# we set this getter function so that we can get the tree with a simple call
+# we overload this getter function so that we can get the default tree with a simple call
 NodeTree.get_tree() = tree
 
 a = [[1,2],[3,4]] # A simple tree using Julia's array
@@ -99,5 +99,3 @@ This package is licensed under MIT. For details, see [License](https://github.co
 ## Contribution  
 
 Contributions and bug reports are welcome! Feel free to open issues or submit pull requests.  
-
----
