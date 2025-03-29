@@ -14,82 +14,77 @@ A Julia package for tree structures, offering core functionality (search, traver
 ## Installation 
 
 ```julia-repl
-
 julia> ]add NodeTree
-
 ```
 
-or for the development version 
-
+or for the development version:  
 ```julia-repl
-
 julia> ]add https://github.com/Gesee-y/NodeTree.jl
 ```
 
 ## Description  
 
-NodeTree.jl is designed with game development in mind but is versatile enough for other domains. The package provides fully functional tree structures that encapsulate your data within node objects.
+NodeTree.jl is designed with game development in mind but is versatile enough for other domains. The package provides fully functional tree structures and also natively **treat Julia objects as trees**, eliminating the need for explicit conversion.
 
 ## Features  
 
-- **LinkedTree**: Create trees where data is wrapped in nodes objects. Nodes are linked one to another allowing clearer parent-child relationship.
-- **ObjectTree**: Create trees where nodes are not directly linked together, instead they are all stored in a Dict and retrieved through their ID, a constant unsigned integer. This allow faster operations(getting a node is O(1) if you know it's ID as an example)
+- **LinkedTree**: Trees where data is wrapped in **node objects** with direct parent-child links.  
+- **ObjectTree**: Trees where nodes are stored in a `Dict` and accessed via unique unsigned integer IDs (O(1) lookup).  
 - **Traversal functions**: DFS (leaf-to-root) and BFS (root-to-leaf).  
-- **Tree manipulation**: Adding, removing, and accessing nodes.  
-- **Pretty-printing**: Visualize tree structures, even for custom tree types.  
-- **Julia type support**: Works with base types (`Array`, `Tuple`, `Dict`, `Pair`, `Expr`).  
-- **Customizable**: Easily define your own tree types via a simple interface.  
+- **Tree manipulation**: Add, remove, and access nodes.  
+- **Pretty-printing**: Visualize tree structures, including native Julia types.  
+- **Native tree support**: Works with base types (`Array`, `Tuple`, `Dict`, `Pair`, `Expr`) **as trees** without conversion.  
+- **Customizable**: Define your own tree types via a simple interface.  
 
 ## Usage
 
 ```julia
-
 using NodeTree
 
-# We create a new Object tree
+# Create a new ObjectTree
 tree = ObjectTree()
 
-# we overload this getter function so that we can get the default tree with a simple call
+# Redefine the default tree getter for convenience
 NodeTree.get_tree() = tree
 
-a = [[1,2],[3,4]] # A simple tree using Julia's array
+# Julia arrays are natively treated as trees
+a = [[1,2], [3,4]]  
 
-# Creating orphan node that will be added to the tree later on
-n1 = Node([1,2,3],"Array") # Node(value, name) the node ID is not your concern
-n2 = Node([4,5,6],"Array2")
-n3 = Node([7,8,9],"Array3")
+# Create nodes to add to the tree
+n1 = Node([1,2,3], "Array")  # Node(value, name) – IDs are auto-managed
+n2 = Node([4,5,6], "Array2")
+n3 = Node([7,8,9], "Array3")
 
-# We add the node's to the tree
-add_child(tree,n1)
-add_child(tree,n2)
-add_child(tree,n3)
+# Add nodes to the tree
+add_child(tree, n1)
+add_child(tree, n2)
+add_child(tree, n3)
 
-n4 = Node(57,"Int Yo")
-n5 = Node(789,"Int Yay")
+# Add children to node `n1`
+n4 = Node(57, "Int Yo")
+n5 = Node(789, "Int Yay")
+add_child(n1, n4)
+add_child(n1, n5)
 
-# We add children to the node `n1`
-add_child(n1,n4)
-add_child(n1,n5)
+# Build a subtree under `n2`
+n6 = Node(3.4, "Floating")
+n7 = Node(rand(), "Floating+")
+n8 = Node(rand() * 10, "Floating+++")
+n9 = Node(eps(), "Floating+++")
+add_child(n2, n6)
+add_child(n2, n7)
+add_child(n7, n8)
+add_child(n2, n9)
 
-n6 = Node(3.4,"Floating")
-n7 = Node(rand(),"Floating+")
-n8 = Node(rand()*10,"Floating+++")
-n9 = Node(eps(),"Floating+++")
+# Add a string node to `n3`
+n10 = Node("Yay", "String")
+add_child(n3, n10)
 
-add_child(n2,n6)
-add_child(n2,n7)
-add_child(n7,n8)
-add_child(n2,n9)
+# Print the ObjectTree structure
+print_tree(stdout, tree)
 
-n10 = Node("Yay","String")
-add_child(n3,n10)
-
-# Pretty printing of the tree
-print_tree(stdout,tree)
-
-# Pretty printing our arrays like a tree, since NodeTree handle some Julia's base types as trees
-print_tree(stdout,a)
-
+# Print the array `a` as a tree
+print_tree(stdout, a)
 ```
 
 ## License  
