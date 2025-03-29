@@ -15,6 +15,14 @@ A Julia package for tree structures, offering core functionality (search, traver
 
 ```julia-repl
 
+julia> ]add NodeTree
+
+```
+
+or for the development version 
+
+```julia-repl
+
 julia> ]add https://github.com/Gesee-y/NodeTree.jl
 ```
 
@@ -24,8 +32,8 @@ NodeTree.jl is designed with game development in mind but is versatile enough fo
 
 ## Features  
 
-- **LinkedTree**: Create trees where data is encapsulated in node objects. Nodes are linked one to another.
-- **ObjectTree**: Create tree where node are not directly linked together, instead they are all stored in a Dict and retrieved through their ID.  
+- **LinkedTree**: Create trees where data are wrapped in nodes objects. Nodes are linked one to another allowing clearer parent-child relationship.
+- **ObjectTree**: Create tree where node are not directly linked together, instead they are all stored in a Dict and retrieved through their ID, a constant unsigned integer. This allow faster operation(getting a node is O(1) if you know it's ID as an example)
 - **Traversal functions**: DFS (leaf-to-root) and BFS (root-to-leaf).  
 - **Tree manipulation**: Adding, removing, and accessing nodes.  
 - **Pretty-printing**: Visualize tree structures, even for custom tree types.  
@@ -45,7 +53,7 @@ NodeTree.get_tree() = tree # Setting this to access the tree more easily
 a = [[1,2],[3,4]] # A simple tree using Julia's array
 
 # Creating orphan node that will be added to the tree later on
-n1 = Node([1,2,3],"Array")
+n1 = Node([1,2,3],"Array") # Node(value, name) the node ID is not your concern
 n2 = Node([4,5,6],"Array2")
 n3 = Node([7,8,9],"Array3")
 
@@ -74,8 +82,10 @@ add_child(n2,n9)
 n10 = Node("Yay","String")
 add_child(n3,n10)
 
-# Pretty printing of the tree and our array
+# Pretty printing of the tree
 print_tree(stdout,tree)
+
+# Pretty printing our arrays like a tree
 print_tree(stdout,a)
 
 ```
