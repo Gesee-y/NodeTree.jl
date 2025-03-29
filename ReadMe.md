@@ -24,8 +24,8 @@ NodeTree.jl is designed with game development in mind but is versatile enough fo
 
 ## Features  
 
-- **NodeTree**: Create trees where data is encapsulated in node objects.  
-- **WeakTree**: Enables garbage collection of removed nodes to optimize memory usage.  
+- **LinkedTree**: Create trees where data is encapsulated in node objects.  
+- **ObjectTree**: Create tree where node are not directly linked together, instead they are all stored in a Dict and retrieved through their ID.  
 - **Traversal functions**: DFS (leaf-to-root) and BFS (root-to-leaf).  
 - **Tree manipulation**: Adding, removing, and accessing nodes.  
 - **Pretty-printing**: Visualize tree structures, even for custom tree types.  
