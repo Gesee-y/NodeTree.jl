@@ -137,9 +137,9 @@ The real objects
 
 # Example
 
-```julia-script
+```julia
 
-using .NodeTree
+using NodeTree
 
 tree = ObjectTree()
 NodeTree.get_tree() = tree
