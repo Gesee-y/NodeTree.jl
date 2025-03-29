@@ -11,6 +11,13 @@ Author: Talom Laël
 
 A Julia package for tree structures, offering core functionality (search, traversal, etc.) and an interface for creating custom trees.  
 
+## Installation 
+
+```julia-repl
+
+julia> ]add https://github.com/Gesee-y/NodeTree.jl
+```
+
 ## Description  
 
 NodeTree.jl is designed with game development in mind but is versatile enough for other domains. The package provides fully functional tree structures that encapsulate your data within node objects. Alternatively, use **WeakTree** to allow garbage collection of nodes after removal, ensuring efficient memory management.  
