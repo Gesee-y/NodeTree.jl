@@ -1,12 +1,3 @@
----
-
-title: NodeTree  
-Author: Talom Laël  
-
-...
-
----
-
 # NodeTree.jl  
 
 A Julia package for tree structures, offering core functionality (search, traversal, etc.) and an interface for creating custom trees.  
