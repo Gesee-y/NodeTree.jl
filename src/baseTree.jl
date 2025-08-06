@@ -1,15 +1,15 @@
 ## Implementing the tree system for the base objects ##
 
-@noinline get_childrens(A::AbstractArray) = A
+@noinline get_children(A::AbstractArray) = A
 
-@noinline get_childrens(T::Tuple) = T
+@noinline get_children(T::Tuple) = T
 
-get_childrens(u::AbstractUnitRange) = Tuple(u)
+get_children(u::AbstractUnitRange) = Tuple(u)
 
-get_childrens(ex::Expr) = ex.args
+get_children(ex::Expr) = ex.args
 
-get_childrens(p::Pair) = (p.first,p.last)
+get_children(p::Pair) = (p.first,p.last)
 
-get_childrens(d::AbstractDict) = pairs(d)
+get_children(d::AbstractDict) = pairs(d)
 
-get_childrens(n) = ()
+get_children(n) = ()

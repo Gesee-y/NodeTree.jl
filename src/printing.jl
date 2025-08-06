@@ -1,6 +1,6 @@
 ## Printing a NodeTree ##
 
-export TreeCharSet, print_tree
+export TreeCharSet, print_tree, get_charset
 
 struct TreeCharSet
 	branch :: String
@@ -15,9 +15,10 @@ const DefaultCharset = TreeCharSet("├","└","│","\t","─")
 get_charset() = DefaultCharset
 
 function print_tree(io::IO,n::AbstractNode;decal=0,mid=1,charset=get_charset())
-	childrens = get_childrens(n)
+	childrens = get_children(n)
 
-	print("Node ",n.name, " : ",nvalue(n))
+	print("Node ",n.name, " : ")
+	print(nvalue(n))
 
 	for i in eachindex(childrens)
 		println()
@@ -39,9 +40,10 @@ function print_tree(io::IO,n::AbstractNode;decal=0,mid=1,charset=get_charset())
 	end
 end	
 function print_tree(io::IO,n;decal=0,mid=1,charset=get_charset())
-	childrens = get_childrens(n)
+	childrens = get_children(n)
 
-	print(typeof(n)," : ",n)
+	print(typeof(n)," : ")
+	print(nvalue(n))
 
 	for i in eachindex(childrens)
 		println()
@@ -63,7 +65,7 @@ function print_tree(io::IO,n;decal=0,mid=1,charset=get_charset())
 	end
 end
 function print_tree(io::IO,t::ObjectTree)
-	childs = get_childrens(get_root(t))
+	childs = get_children(get_root(t))
 	print(io,"Object Tree with $(get_object_count(t)) Node :")
 	println()
 

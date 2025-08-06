@@ -178,18 +178,19 @@ print_tree(stdout,a)
 ```
 """
 mutable struct ObjectTree <: AbstractTree
-	objects :: SimpleDict{UInt,Node}
+	objects :: Vector{Union{Nothing,Node}}
 	root :: ObjectRoot
 	node_count :: UInt
 	current_ID :: UInt
+	free_indices::Vector{Int}
 
-	ObjectTree() = begin
-		tree = new(SimpleDict{UInt,Node}(),ObjectRoot(),0,0)
+	ObjectTree(;current=0) = begin
+		tree = new(Vector{Union{Nothing,Node}}(),ObjectRoot(),0,current,Int[])
 		get_root(tree).tree.value = tree
 		return tree 
 	end
-	ObjectTree(root::ObjectRoot) = begin
-		tree = new(SimpleDict{UInt,Node}(),root,0,0)
+	ObjectTree(root::ObjectRoot;current=0) = begin
+		tree = new(Vector{Union{Nothing,Node}}(),root,0,current,Int[])
 		root.tree.value = tree
 		return tree 
 	end
@@ -203,4 +204,9 @@ include("LinkedNode.jl")
 
 _generate_node_name() = "@Node"
 
+function Base.delete!(tree::ObjectTree, i::Int)
+    tree.objects[i] = nothing
+    push!(tree.free_indices, i)
 end
+
+end # module
