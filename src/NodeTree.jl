@@ -37,6 +37,7 @@ struct SimpleDict{T <: Any,N <: Any}
 
 	SimpleDict() = new{Any,Any}([],[])
 	SimpleDict{T,N}() where{T <: Any, N <: Any} = new{T,N}(T[],N[])
+end
 
 function Base.getindex(d::SimpleDict,ky)
 	key = getfield(d,:ky)
@@ -205,5 +206,6 @@ function Base.delete!(tree::ObjectTree, i::Int)
     tree.objects[i] = nothing
     push!(tree.free_indices, i)
 end
+
 
 end # module
