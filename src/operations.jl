@@ -165,7 +165,6 @@ remove_node(tree::AbstractTree,n2::AbstractNode) = remove_child(get_parent(n2),n
 
 Return the current active tree. You will have to redefine this in your projects with `NodeTree.get_tree() = Your_tree`
 """
-@inline get_tree() = nothing
 get_tree(n::Node) = getfield(n,:tree)
 get_tree(r::ObjectRoot) = getfield(r,:tree)
 
