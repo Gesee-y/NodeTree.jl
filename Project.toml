@@ -1,6 +1,6 @@
 name = "NodeTree"
 uuid = "2904b71e-4df0-4a82-a724-4bbee9184de7"
-version = "1.0.1"
+version = "1.0.2"
 authors = ["Talom Lael <gesee37@gmail.com>"]
 
 [compat]
